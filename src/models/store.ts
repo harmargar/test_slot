@@ -1,18 +1,23 @@
-import { gameConfig } from '../configs/game-config';
+import { getPlayer } from '../back_end/get-player';
+import { jecpotConfig } from '../configs/jecpot-config';
 import { SoundState, StorStates } from '../constants/states';
 import { postRunnable } from '../utils';
-import { GameModel } from './game-model';
+import { JackpotModel } from './jackpot-model';
 import { ObservableModel } from './observable-model';
+import { PlayerModel } from './player-model';
+import { SlotMachineModel } from './slot-machine-model';
 import { SoundModel } from './sound-model';
 
 class Store extends ObservableModel {
-    private _game: GameModel;
+    private _player: PlayerModel;
+    private _slotMachine: SlotMachineModel;
+    private _jackpot: JackpotModel;
     private _sound: SoundModel;
     private _state: StorStates
 
     public constructor() {
         super('Store');
-        this.makeObservable("_game", "_balance", "_hint", "_state");
+        this.makeObservable("_game", "_state", "_slotMachine", "_jackpot");
 
         this._state = StorStates.idel;
     }
@@ -25,12 +30,20 @@ class Store extends ObservableModel {
         this._state = value;
     }
 
-    public get game(): GameModel {
-        return this._game;
+    public get player(): PlayerModel {
+        return this._player;
     }
 
-    public set game(value) {
-        this._game = value;
+    public set player(value) {
+        this._player = value;
+    }
+
+    public get slotMachine(): SlotMachineModel {
+        return this._slotMachine;
+    }
+
+    public set slotMachine(value) {
+        this._slotMachine = value;
     }
 
     public get sound(): SoundModel {
@@ -42,16 +55,39 @@ class Store extends ObservableModel {
     }
 
     // GAME
-    public initializeGameModel(): void {
-        this._game = new GameModel(gameConfig);
+    public initializePlayerModel(): void {
+        this._player = new PlayerModel();
         postRunnable(() => {
-            this._game.initialize();
+            this._player.initialize(getPlayer());
         });
     }
 
-    public destroyGameModel(): void {
-        this._game.destroy();
-        this._game = null;
+    public destroyPlayerModel(): void {
+        this._player.destroy();
+        this._player = null;
+    }
+
+
+    public destroySlotMachineModel(): void {
+        this._slotMachine.destroy();
+        this._slotMachine = null;
+    }
+
+    public initializeSlotMachineModel(): void {
+        this._slotMachine = new SlotMachineModel();
+        postRunnable(() => {
+            this._slotMachine.initialize();
+        });
+    }
+
+
+    public destroyJackpotModel(): void {
+        this._jackpot.destroy();
+        this._jackpot = null;
+    }
+
+    public initializeJackpotModel(): void {
+        this._jackpot = new JackpotModel(jecpotConfig);
     }
 
 

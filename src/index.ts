@@ -13,6 +13,7 @@ lego.command.on(GameEvent.init, startupCommand);
 
 const app = new Game();
 window.game = app;
+window.__PIXI_APP__ = app;
 
 window.onload = async (): Promise<void> => {
     await loadGameAssets();
@@ -37,38 +38,28 @@ async function loadGameAssets(): Promise<void> {
     const manifest = {
         bundles: [
             {
-                name: "items",
+                name: "assets",
                 assets: [
                     {
-                        name: "items",
-                        srcs: "./assets/assets.json",
-                    }
-                ],
-            },
-
-            {
-                name: 'ui',
-                assets: [
-                    {
-                        alias: 'logo',
-                        src: './assets/Logo_RT.png',
-                    }
-                ],
-            },
-            {
-                name: 'fonts',
-                assets: [
-                    {
-                        alias: 'Tobi_Greek',
-                        src: './assets/fonts/Tobi_Greek_Cyrillic_Regular.woff',
+                        name: "assets",
+                        srcs: "./assets/texture.json",
                     },
+                ],
+            },
+            {
+                name: 'bg',
+                assets: [
+                    {
+                        alias: 'bg',
+                        src: './assets/bg.png',
+                    }
                 ],
             },
         ],
     };
 
     await PIXI.Assets.init({ manifest });
-    await PIXI.Assets.loadBundle(["items", "ui", "fonts"]);
+    await PIXI.Assets.loadBundle(["assets", 'bg']);
     // sound.add("bgm_groovy", "./assets/sounds/bgm_groovy.mp4");
 }
 

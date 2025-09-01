@@ -2,19 +2,15 @@ export enum MainViewEvent {
     click = 'MainViewClick',
 }
 
-export enum CellViewEvent {
-    onPointerUp = "CellViewEventOnPointerUp",
-    onItemClick = "CellViewEventOnItemClick",
-    onMargeEffectComplete = "CellViewEventOnMargeEffectComplete",
-    onColectEffectComplete = "CellViewEventOnColectEffectComplete"
+export enum ButtonsClick {
+    spinButtonClick = "SpinButtonClick",
+    stopButtonClick = "StopButtonClick",
+    betIncreaseButtonClick = "BetIncreaseButtonClick",
+    betDecreaseButtonClick = "BetDecreaseButtonClick",
 }
 
-export enum GameViewEvent {
-    mergeCells = "GameViewEventMergeCells"
-}
-
-export enum CtaViewEvent {
-    playAgainClick = "CtaViewEventPlayAgainClick"
+export enum SlotMachineViewEvent {
+    stopActionCompite = "SlotMachineViewStopActionCompite",
 }
 
 export enum SoundViewEvent {

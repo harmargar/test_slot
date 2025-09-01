@@ -4,16 +4,23 @@ export enum StorStates {
     cta = "StorCtaState"
 }
 
-export enum CellStates {
-    idel = "CellIdleState",
-    marge = "CellMargeState",
-    colect = "CellColectState"
+export enum SlotMachineState {
+    idel = "SlotMachineIdleState",
+    spin = "SlotMachineSpinState",
+    stop = "SlotMachineStopState",
+    stopForce = "SlotMachineStopForceState",
+    win = "SlotMachineWinState"
 }
 
-export enum HintState {
-    idle = "HintIdelState",
-    show = "HintShowState",
-    hide = "HintHideState"
+
+export enum SlotState {
+    idel = "SlotIdleState",
+    win = "SlotWinState"
+}
+
+export enum ReelState {
+    idel = "RellIdleState",
+    spin = "RellSpinState"
 }
 
 export enum SoundState {

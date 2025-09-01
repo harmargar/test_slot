@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 
+import gsap from 'gsap';
 import { AnimatedSprite, Container, DisplayObject, Point, Sprite, Text, Texture, Ticker } from 'pixi.js';
 
 
@@ -145,3 +146,10 @@ export const getDisplayObjectByProperty = (prop: string, value: string, parent?:
 
     return null;
 };
+
+export const animateText = (textObject: Text, carentValue: number, nexValue: number, duration: number, prefix: string = '') => {
+    const obg = { value: carentValue };
+    gsap.to(obg, { value: nexValue, duration, ease: 'sine.in' }).eventCallback('onUpdate', (...args: unknown[]) => {
+        textObject.text = Math.floor(obg.value) + prefix;
+    })
+}

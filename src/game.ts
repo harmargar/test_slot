@@ -10,7 +10,7 @@ export class Game extends Application<HTMLCanvasElement> {
     private _revealed = true;
 
     public constructor() {
-        super({ resizeTo: window, backgroundColor: 0xcdcdcd });
+        super({ width: window.outerWidth, height: outerHeight, backgroundColor: 0xcdcdcd });
         document.body.appendChild(this.view);
         this._setResizeListener()
         this._init();
@@ -101,6 +101,7 @@ export class Game extends Application<HTMLCanvasElement> {
 
     private _setResizeListener(): void {
         window.addEventListener('resize', () => {
+            this.renderer.resize(window.innerWidth, window.innerHeight);
             postRunnable(() => {
                 lego.event.emit(GameEvent.resize);
             })

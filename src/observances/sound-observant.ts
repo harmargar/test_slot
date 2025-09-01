@@ -1,10 +1,9 @@
 import { lego } from '@armathai/lego';
 import { sound } from '@pixi/sound';
 import { utils } from 'pixi.js';
-import { CellStates, SoundState } from '../constants/states';
+import { SoundState } from '../constants/states';
 import { GameEvent } from '../events/game';
-import { CellModelEvent, SoundModelEvent } from '../events/model';
-import { CellViewEvent, CtaViewEvent } from '../events/view';
+import { SoundModelEvent } from '../events/model';
 import { postRunnable } from '../utils';
 
 export class SoundObservant {
@@ -14,9 +13,6 @@ export class SoundObservant {
 
     private _init(): void {
         lego.event.on(GameEvent.pause, this._pause, this).on(GameEvent.resume, this._resume, this);
-        lego.event.on(CellModelEvent.stateUpdate, this._onCellStateUpdate, this);
-        lego.event.on(CellViewEvent.onItemClick, this._onItemClick, this);
-        lego.event.on(CtaViewEvent.playAgainClick, this._onplayAgainClick, this);
         lego.event.on(SoundModelEvent.stateUpdate, this._onStateUpdate, this);
         postRunnable(() => {
             if (game.interaction) {
@@ -38,32 +34,6 @@ export class SoundObservant {
 
             default:
                 this._unmute();
-                break;
-        }
-    }
-
-
-    private _onplayAgainClick(state: CellStates): void {
-        this._play('wood_button_tap_03');
-    }
-
-    private _onItemClick(state: CellStates): void {
-        this._play('collect_item');
-    }
-
-    private _onCellStateUpdate(state: CellStates): void {
-
-        switch (state) {
-            case CellStates.colect:
-                this._play('coinsb_boom');
-                break;
-
-            case CellStates.marge:
-                this._play('merge_expedition_energy_field');
-                this._play('merge_merge_energy_field');
-                break;
-
-            default:
                 break;
         }
     }

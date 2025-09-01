@@ -1,8 +1,13 @@
 import { lego } from '@armathai/lego';
-import { initializeGameModelCommand } from './initialize-game-model-command';
+import { initializeJackpotModelCommand } from './initialize-jackpot-model-command';
+import { initializePlayerModelCommand } from './initialize-player-model-command';
+import { initializeSlotMachineModelCommand } from './initialize-slot-machine-model-command';
 import { initializeSoundModelCommand } from './initialize-sound-model-command';
 
 export const initializeModelsCommand = (): void => {
-    lego.command.execute(initializeGameModelCommand)
+    lego.command
+        .execute(initializePlayerModelCommand)
+        .execute(initializeSlotMachineModelCommand)
+        .execute(initializeJackpotModelCommand)
         .execute(initializeSoundModelCommand);
 };

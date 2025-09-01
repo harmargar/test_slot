@@ -56,7 +56,7 @@ export class SoundView extends Container {
     private _buildButton(texture: string): Sprite {
         const button = makeSprite(texture);
         this.addChild(button);
-        button.visible = false;
+        button.visible = true;
         return button;
     }
 }

@@ -1,6 +1,7 @@
 import { ICellConfig } from '@armathai/pixi-grid';
-import { Container, Graphics } from 'pixi.js';
+import { Container } from 'pixi.js';
 import { getBackgroundGridConfig } from '../configs/grid-configs';
+import { makeSprite } from '../utils';
 
 export class BackgroundView extends Container {
     // private _bg: Sprite;
@@ -16,10 +17,7 @@ export class BackgroundView extends Container {
     }
 
     private _createBg(): void {
-        const graphics = new Graphics();
-        graphics.beginFill(0xff0000);
-        graphics.drawRect(0, 0, window.game.screen.width, window.game.screen.height);
-        graphics.endFill();
-        this.addChild(graphics);
+        const bg = makeSprite('bg');
+        this.addChild(bg);
     }
 }

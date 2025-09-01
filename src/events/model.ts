@@ -5,34 +5,31 @@ export enum ObservableModelEvent {
 
 export enum StoreEvent {
     uuidUpdate = "StoreUuidUpdate",
-    hintUpdate = "StoreHintUpdate",
     gameUpdate = "StoreGameUpdate",
-    balanceUpdate = "StoreBalanceUpdate",
+    slotMachineUpdate = "StoreSlotMachineUpdate",
+    jackpotUpdate = "StoreJackpotUpdate",
     stateUpdate = "StoreStateUpdate",
 }
 
-export enum GameModelEvent {
-    uuidUpdate = "GameModelUuidUpdate",
-    cellsUpdate = "GameModelCellsUpdate",
-    margeCountUpdate = "GameModelMargeCountUpdate"
+export enum PlayerModelEvent {
+    betUpdate = "PlayerModelBetUpdate",
+    balanceUpdate = "PlayerModelBalanceUpdate",
+}
+
+export enum SlotMachineEvent {
+    reelsUpdate = "SlotMachineModelReelsUpdate",
+    stateUpdate = "SlotMachineModelStateUpdate",
+    winUpdate = "SlotMachineModelWinUpdate",
 }
 
 
-export enum BalanceModelEvent {
-    valueUpdate = "BalanceModelValueUpdate"
+export enum SlotEvent {
+    stateUpdate = "SlotModelStateUpdate",
 }
 
-
-export enum CellModelEvent {
-    itemIndexUpdate = "CellModelItemIndexUpdate",
-    stateUpdate = "CellModelStateUpdate"
+export enum JackpotItemEvent {
+    valueUpdate = "JackpotItemModelValueUpdate",
 }
-
-
-export enum HintModelEvent {
-    stateUpdate = "HintModelStateUpdate"
-}
-
 
 export enum SoundModelEvent {
     stateUpdate = "SoundModelStateUpdate"
