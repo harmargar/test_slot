@@ -30,9 +30,15 @@
         "./typings/custom.d.ts",
         "./typings/configs.d.ts",
         "./typings/utils.d.ts",
-        "webpack.config.ts",
-        "webpack.dev.ts",
+        "webpack.config.cjss",
+        "webpack.dev.cjss",
         "webpack.webpack.prod.ts"
     ],
-    "typeRoots": ["./node_modules/@types", "./src/types"]
+    "typeRoots": ["./node_modules/@types", "./src/types"],
+    "ts-node": {
+        "compilerOptions": {
+            "module": "CommonJS",
+            "moduleResolution": "Node"
+        }
+    }
 }

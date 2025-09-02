@@ -1,10 +1,9 @@
-import * as webpack from "webpack";
-import * as path from "path";
-import fs from "fs";
+const ESLintPlugin = require("eslint-webpack-plugin");
+const path = require('path');
+const webpack = require('webpack');
+const fs = require('fs');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
-import ESLintPlugin from "eslint-webpack-plugin";
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const pkg = JSON.parse(fs.readFileSync(path.join(__dirname, "package.json"), "utf-8"));
 
 module.exports = () => {

@@ -1,4 +1,4 @@
-import { BlurFilter, Container, Ticker, TickerCallback } from 'pixi.js';
+import { Container, Ticker, TickerCallback } from 'pixi.js';
 import { ReelModel } from '../models/reel-model';
 import { SlotView } from './slot-view';
 
@@ -7,7 +7,7 @@ export class RillView extends Container {
     private _speed: number = 0;
     private _endPosition: number;
     private _stopPromise: TickerCallback<any>;
-    private _blurFiltr: BlurFilter;
+    // private _blurFiltr: BlurFilter;
 
     constructor(private _rillModel: ReelModel) {
         super();
@@ -17,11 +17,11 @@ export class RillView extends Container {
 
     public spin(): void {
         this._endPosition = this.height;
-        this._blurFiltr = new BlurFilter(0, 3);
+        // this._blurFiltr = new BlurFilter(0, 3);
 
-        this.filters = [
-            this._blurFiltr
-        ];
+        // this.filters = [
+        //     this._blurFiltr
+        // ];
 
         !!this._stopPromise && Ticker.shared.remove(this._stopPromise, this);
         Ticker.shared.add(this._spinAction, this);
@@ -67,9 +67,9 @@ export class RillView extends Container {
         if (this._speed <= 70) {
             this._speed += 2;
         }
-        if (this._blurFiltr.blur <= 14) {
-            this._blurFiltr.blur += 0.5;
-        }
+        // if (this._blurFiltr.blur <= 14) {
+        //     this._blurFiltr.blur += 0.5;
+        // }
         this._slots.forEach(slot => {
             slot.y += this._speed;
             if (slot.y >= this._endPosition) {
@@ -95,7 +95,7 @@ export class RillView extends Container {
     }
 
     private _removeActions(): void {
-        this.filters = [];
+        // this.filters = [];
         Ticker.shared.remove(this._stopPromise, this);
         this._stopPromise = null;
         this._slots.forEach((slot, index) => {
