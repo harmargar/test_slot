@@ -3,6 +3,7 @@ import { ICellConfig, PixiGrid } from '@armathai/pixi-grid';
 import gsap from 'gsap';
 import { Sprite, Texture } from 'pixi.js';
 import { getEffectViewGridConfig } from '../configs/grid-configs';
+import { SlotMachineState } from '../constants/states';
 import { SlotMachineEvent } from '../events/model';
 import { store } from '../models/store';
 import { delayRunnable, removeRunnable } from '../utils';
@@ -19,6 +20,7 @@ export class EffectView extends PixiGrid {
         this._init();
 
         lego.event.on(SlotMachineEvent.winUpdate, this._onWinUpdate, this);
+        lego.event.on(SlotMachineEvent.stateUpdate, this._onSlotMachineStateUpdate, this);
     }
 
     public getGridConfig(): ICellConfig {
@@ -28,6 +30,18 @@ export class EffectView extends PixiGrid {
     private _onWinUpdate(winValue: number): void {
         if (store.player.bet * 3 < winValue)
             this._show(winValue)
+    }
+
+
+    private _onSlotMachineStateUpdate(state: SlotMachineState): void {
+        switch (state) {
+            case SlotMachineState.spin:
+                this._hide();
+                break;
+
+            default:
+                break;
+        }
     }
 
     private _show(winValue: number): void {
@@ -42,9 +56,17 @@ export class EffectView extends PixiGrid {
 
     private _hide(): void {
         removeRunnable(this._hideTimer);
-        gsap.to(this, { alpha: 0, duration: 3, ease: 'sine.inOut' });
+        gsap.to(this, { alpha: 0, duration: 0.5, ease: 'sine.inOut' }).eventCallback('onComplete', () => {
+            this.visible = false;
+        });
         this._bigwin.hide();
+    }
+
+    private _forceHide(): void {
+        removeRunnable(this._hideTimer);
+        gsap.to(this, { alpha: 0, duration: 3, ease: 'sine.inOut' });
         this.visible = false;
+        this._bigwin.hide();
     }
 
     private _init(): void {

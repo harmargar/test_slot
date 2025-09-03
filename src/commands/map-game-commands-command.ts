@@ -7,6 +7,7 @@ import { onIncreaseButtonClickCommand } from './on-bet-increase-button-click-com
 import { onGameResizeCommand } from './on-game-resize-command';
 import { onSlotMachineWinUpdateComand } from './on-slot-machine-win-update-command';
 import { onSoundClickCommand } from './on-sound-click-command';
+import { onSpaceKeypressComand } from './on-space-key-press-command';
 import { onSpinButtonClickCommand } from './on-spin-button-click-command';
 import { onStopActionCompiteComand } from './on-stop-action-compite-comand';
 import { onStopButtonClickCommand } from './on-stop-button-click-command';
@@ -20,5 +21,6 @@ export const mapGameCommandsCommand = (): void => {
         .on(ButtonsClick.betIncreaseButtonClick, onIncreaseButtonClickCommand)
         .on(SlotMachineViewEvent.stopActionCompite, onStopActionCompiteComand)
         .on(SlotMachineEvent.winUpdate, onSlotMachineWinUpdateComand)
+        .on(GameEvent.documentBodySpaceKeypress, onSpaceKeypressComand)
         .on(SoundViewEvent.onClick, onSoundClickCommand);
 };

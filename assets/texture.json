@@ -1104,6 +1104,30 @@
         "y": 0.5
       }
     },
+    "slot_machin_header_lite.png": {
+      "frame": {
+        "x": 225,
+        "y": 1415,
+        "w": 150,
+        "h": 71
+      },
+      "rotated": true,
+      "trimmed": true,
+      "spriteSourceSize": {
+        "x": 6,
+        "y": 3,
+        "w": 150,
+        "h": 71
+      },
+      "sourceSize": {
+        "w": 162,
+        "h": 77
+      },
+      "pivot": {
+        "x": 0.5,
+        "y": 0.5
+      }
+    },
     "1.png": {
       "frame": {
         "x": 2294,
@@ -1274,8 +1298,8 @@
     },
     "sound_on.png": {
       "frame": {
-        "x": 225,
-        "y": 1415,
+        "x": 529,
+        "y": 1414,
         "w": 55,
         "h": 52
       },

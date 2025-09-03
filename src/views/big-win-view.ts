@@ -22,6 +22,11 @@ export class BigWinView extends Container {
     }
 
     public show(winValue: number): void {
+        this._glow.scale.set(3.3);
+        this._arrow.position.set(0, 0);
+        this._baner.scale.set(1);
+        this._arrow.position.set(0);
+
         this._arrow.visible = true;
         this._baner.visible = true;
         this._glow.visible = true;
@@ -34,7 +39,7 @@ export class BigWinView extends Container {
     }
 
     public hide(): void {
-        gsap.to(this, { alpha: 0, duration: 1, ease: 'sine.out' }).eventCallback('onComplete', () => {
+        gsap.to(this, { alpha: 0, duration: 0.5, ease: 'sine.out' }).eventCallback('onComplete', () => {
             this._arrow.visible = false;
             this._baner.visible = false;
             this._glow.visible = false;

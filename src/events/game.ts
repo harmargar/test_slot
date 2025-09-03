@@ -10,5 +10,6 @@ export enum GameEvent {
     pause = 'GameEventPause',
     configsUpdate = 'GameEventConfigsUpdate',
     documentBodyPointerDown = 'GameEventDocumentBodyPointerDown',
-    documentBodyPointerUp = 'GameEventDocumentBodyPointerUp'
+    documentBodyPointerUp = 'GameEventDocumentBodyPointerUp',
+    documentBodySpaceKeypress = 'GameEventDocumentBodySpaceKeypress'
 }
