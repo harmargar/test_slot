@@ -6,6 +6,7 @@ import { SlotMachineViewEvent } from '../events/view';
 import { ReelModel } from '../models/reel-model';
 import { delayRunnable, lp, makeSprite } from '../utils';
 import { RillView } from './reel-view';
+import { SlotMachineEffectsView } from './slot-machine-effect-view';
 const logoData = {
     landscape: {
         position: new Point(752, -384),
@@ -133,6 +134,7 @@ export class SlotMachineView extends Container {
         this._reelsContiner.mask = grap;
 
         this._buildLogo();
+        this._buildLights();
 
         this.rebuild();
     }
@@ -155,5 +157,9 @@ export class SlotMachineView extends Container {
         this.addChild(this._logo = logo);
         this._updateLegoPosition();
 
+    }
+
+    private _buildLights(): void {
+        this.addChild(new SlotMachineEffectsView);
     }
 }
