@@ -38,20 +38,27 @@ export class BigWinView extends Container {
         this._animateText(winValue);
     }
 
-    public hide(): void {
-        gsap.to(this, { alpha: 0, duration: 0.5, ease: 'sine.out' }).eventCallback('onComplete', () => {
-            this._arrow.visible = false;
-            this._baner.visible = false;
-            this._glow.visible = false;
-            gsap.killTweensOf(this);
-            gsap.killTweensOf(this._arrow);
+    public hide(force: boolean = false): void {
+        if (!force)
+            gsap.to(this, { alpha: 0, duration: 0.5, ease: 'sine.out' }).eventCallback('onComplete', () => {
+                this._hideAcionCompite();
+            });
+        else {
+            this.alpha = 0;
+            this._hideAcionCompite();
+        }
+    }
 
-            gsap.killTweensOf(this._baner.scale);
-            gsap.killTweensOf(this._glow.scale);
-            gsap.killTweensOf(this._glow);
-        });
+    private _hideAcionCompite(): void {
+        this._arrow.visible = false;
+        this._baner.visible = false;
+        this._glow.visible = false;
+        gsap.killTweensOf(this);
+        gsap.killTweensOf(this._arrow);
 
-
+        gsap.killTweensOf(this._baner.scale);
+        gsap.killTweensOf(this._glow.scale);
+        gsap.killTweensOf(this._glow);
     }
 
     private _init(): void {

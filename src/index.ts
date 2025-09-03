@@ -32,12 +32,6 @@ window.onload = async (): Promise<void> => {
     document.body.addEventListener('pointerup', () => {
         lego.event.emit(GameEvent.documentBodyPointerUp);
     });
-
-    document.body.addEventListener('keydown', (ev: KeyboardEvent) => {
-        if (ev.code === 'Space')
-            lego.event.emit(GameEvent.documentBodySpaceKeypress);
-    });
-
 };
 
 async function loadGameAssets(): Promise<void> {

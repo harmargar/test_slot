@@ -36,7 +36,7 @@ export class EffectView extends PixiGrid {
     private _onSlotMachineStateUpdate(state: SlotMachineState): void {
         switch (state) {
             case SlotMachineState.spin:
-                this._hide();
+                this._hide(true);
                 break;
 
             default:
@@ -54,12 +54,19 @@ export class EffectView extends PixiGrid {
         })
     }
 
-    private _hide(): void {
+    private _hide(force: boolean = false): void {
         removeRunnable(this._hideTimer);
-        gsap.to(this, { alpha: 0, duration: 0.5, ease: 'sine.inOut' }).eventCallback('onComplete', () => {
+        if (!force)
+            gsap.to(this, { alpha: 0, duration: 0.5, ease: 'sine.inOut' }).eventCallback('onComplete', () => {
+                this.visible = false;
+            });
+        else {
+            this.alpha = 0;
             this.visible = false;
-        });
-        this._bigwin.hide();
+        }
+
+        this._bigwin.hide(force);
+
     }
 
     private _forceHide(): void {

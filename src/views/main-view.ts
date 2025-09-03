@@ -54,6 +54,12 @@ export class MainView extends PixiGrid {
         const slotMachine = new SlotMachineView();
         this._content.addChild(this._slotMachine = slotMachine);
         this.rebuild(this.getGridConfig());
+
+
+        document.body.addEventListener('keydown', (ev: KeyboardEvent) => {
+            if (ev.code === 'Space')
+                lego.event.emit(GameEvent.documentBodySpaceKeypress);
+        });
     }
 
     private _onJackpotUpdate(jackpotModel: JackpotModel): void {
